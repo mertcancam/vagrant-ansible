@@ -22,11 +22,13 @@ Once its all don run:
 vboxmanage list runningvms
 ```
 
-to see the running vms. Yhe output should look like the following:
+to see the running vms. The output should look like the following:
 
+```
 "ubuntuvm1" {8b30231b-2b93-4924-a607-a2972cce32cf}
 "ubuntuvm2" {0009c306-fdd1-478d-8201-68484c692786}
 "centosvm01" {b7a0b722-65b4-4733-9ffe-e14a1c3f25e6}
+```
 
 ## Connect to servers
 
