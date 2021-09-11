@@ -1,0 +1,9 @@
+[all:vars]
+ansible_user=vagrant
+
+[ubuntu]
+172.16.16.101
+172.16.16.102
+
+[centos]
+172.16.16.111
