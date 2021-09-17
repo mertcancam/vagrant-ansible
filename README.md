@@ -16,7 +16,7 @@ vagrant up
 ```
 This will download ISO images for both ubuntu and centos so it may take longer for this command to be executed on the first run.
 
-Once its all don run:
+Once its all done, run:
 
 ```
 vboxmanage list runningvms
@@ -67,10 +67,15 @@ you should be able ssh into the machines without entering the user password.
 
 * Ping hosts
 ```console
-ansible all --key-file ~/.ssh/ansible -i inventory -m ping
+ansible all -m ping
 ```
 
-Note: If you defined defaults in your ansible.cfg file, you can omit `--key-file ~/.ssh/ansible -i inventory`.
+Note: Since we defined some defaults in the ansible.cfg file, we are able to skip some arguments for the above command.
+If you delete ansible.cfg file then you would have to run:
+
+```console
+ansible all --key-file ~/.ssh/ansible -i inventory -m ping
+```
 
 * List hosts
 
@@ -84,8 +89,22 @@ ansible all --list-hosts
 ansible all -m gather_facts
 ```
 
-## Run the palybook
+## Run the playbook
 
 ```console
 ansible-playbook --ask-become-pass site.yml
+```
+
+# Use tags
+
+List tags:
+
+```console
+ansible-playbook --list-tags site.yml
+```
+
+Target tag "centos":
+
+```console
+ansible-playbook --tags centos --ask-become-pass site.yml
 ```
