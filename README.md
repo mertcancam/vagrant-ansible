@@ -35,7 +35,7 @@ to see the running vms. The output should look like the following:
 
 We are able to connect to any servers at this point by using the vagrant password. Give it a try.
 
-```
+```console
 ssh vagrant@172.16.16.101
 ssh vagrant@172.16.16.102
 ssh vagrant@172.16.16.111
@@ -49,7 +49,7 @@ Either use your existing ssh key or create a new one for ansible. I will assume 
 
 Copy your ansible public keys inside all the servers. We are able to connect any server by running:
 
-```
+```console
 ssh-copy-id -i ~/.ssh/ansible.pub vagrant@172.16.16.101
 ssh-copy-id -i ~/.ssh/ansible.pub vagrant@172.16.16.102
 ssh-copy-id -i ~/.ssh/ansible.pub vagrant@172.16.16.111
@@ -57,7 +57,7 @@ ssh-copy-id -i ~/.ssh/ansible.pub vagrant@172.16.16.112
 ```
 
 Try using your ssh key this time by running:
-```
+```console
 ssh -i ~/.ssh/ansible vagrant@172.16.16.101
 ```
 
@@ -66,7 +66,7 @@ you should be able ssh into the machines without entering the user password.
 ## Connect servers via Ansible
 
 * Ping hosts
-```
+```console
 ansible all --key-file ~/.ssh/ansible -i inventory -m ping
 ```
 
@@ -74,12 +74,18 @@ Note: If you defined defaults in your ansible.cfg file, you can omit `--key-file
 
 * List hosts
 
-```
+```console
 ansible all --list-hosts
 ```
 
 * Gather informations about hosts
 
-```
+```console
 ansible all -m gather_facts
+```
+
+## Run the palybook
+
+```console
+ansible-playbook --ask-become-pass site.yml
 ```
