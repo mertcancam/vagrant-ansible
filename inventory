@@ -5,7 +5,7 @@ ansible_user=vagrant
 172.16.16.101
 172.16.16.111
 
-[db_servers]
+[random_server]
 172.16.16.102
 
 [file_servers]
