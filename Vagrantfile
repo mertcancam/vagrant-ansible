@@ -8,7 +8,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: "bootstrap.sh"
 
   UbuntuCount = 2
-  CentosCount = 1
+  CentosCount = 2
 
   (1..UbuntuCount).each do |i|
 

@@ -1,9 +1,12 @@
 [all:vars]
 ansible_user=vagrant
 
-[ubuntu]
+[web_servers]
 172.16.16.101
+172.16.16.111
+
+[db_servers]
 172.16.16.102
 
-[centos]
-172.16.16.111
+[file_servers]
+172.16.16.112

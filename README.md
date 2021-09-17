@@ -28,6 +28,7 @@ to see the running vms. The output should look like the following:
 "ubuntuvm1" {8b30231b-2b93-4924-a607-a2972cce32cf}
 "ubuntuvm2" {0009c306-fdd1-478d-8201-68484c692786}
 "centosvm01" {b7a0b722-65b4-4733-9ffe-e14a1c3f25e6}
+"centosvm02" {9yy3b722-65b4-4733-9ffe-e14a1c3cd7e1}
 ```
 
 ## Connect to servers
@@ -38,6 +39,7 @@ We are able to connect to any servers at this point by using the vagrant passwor
 ssh vagrant@172.16.16.101
 ssh vagrant@172.16.16.102
 ssh vagrant@172.16.16.111
+ssh vagrant@172.16.16.112
 ```
 Password: vagrant
 
@@ -51,6 +53,7 @@ Copy your ansible public keys inside all the servers. We are able to connect any
 ssh-copy-id -i ~/.ssh/ansible.pub vagrant@172.16.16.101
 ssh-copy-id -i ~/.ssh/ansible.pub vagrant@172.16.16.102
 ssh-copy-id -i ~/.ssh/ansible.pub vagrant@172.16.16.111
+ssh-copy-id -i ~/.ssh/ansible.pub vagrant@172.16.16.112
 ```
 
 Try using your ssh key this time by running:
@@ -62,6 +65,21 @@ you should be able ssh into the machines without entering the user password.
 
 ## Connect servers via Ansible
 
+* Ping hosts
 ```
 ansible all --key-file ~/.ssh/ansible -i inventory -m ping
+```
+
+Note: If you defined defaults in your ansible.cfg file, you can omit `--key-file ~/.ssh/ansible -i inventory`.
+
+* List hosts
+
+```
+ansible all --list-hosts
+```
+
+* Gather informations about hosts
+
+```
+ansible all -m gather_facts
 ```
