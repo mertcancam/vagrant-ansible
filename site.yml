@@ -4,19 +4,38 @@
   become: true
   pre_tasks:
 
-  - name: install updates (Ubuntu)
+  - name: update repo cache (Ubuntu)
     tags: always
     apt:
-      upgrade: dist
       update_cache: yes
+    changed_when: false
     when: ansible_distribution == "Ubuntu"
 
-  - name: install updates (CentOS)
+  - name: update repo cache (CentOS)
     tags: always
     yum:
-      update_only: yes
       update_cache: yes
+    changed_when: false
     when: ansible_distribution == "CentOS"
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: create simone user
+    tags: always
+    user: 
+      name: simone
+      groups: root
+      
+  - name: add sudoers file for simone
+    tags: always
+    copy:
+      src: sudoer_simone
+      dest: /etc/sudoers.d/simone
+      owner: root
+      group: root
+      mode: 0440
 
 - hosts: web_servers
   become: true
